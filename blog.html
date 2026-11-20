@@ -6,69 +6,154 @@
 <title>Blog — Zynth Labs | Research, Data & Writing Notes</title>
 <meta name="description" content="Practical notes on research briefs, data extraction and buying writing and research work at a fixed price.">
 <style>
-  :root{--bg:#0b1220;--panel:#111a2e;--panel2:#0f1729;--text:#e8eef7;--muted:#9fb0c7;--accent:#4f8cff;--accent2:#22c07a;--line:#22314f;--radius:14px}
+  :root{
+    --bg:#050c1a; --bg2:#081226; --panel:#0b1830; --panel2:#0d1d3a;
+    --text:#ecf3fc; --muted:#9db1cc; --muted2:#7186a3;
+    --teal:#2dd4bf; --cyan:#38bdf8;
+    --grad:linear-gradient(92deg,#2dd4bf 0%,#38bdf8 100%);
+    --line:rgba(120,180,230,.16); --radius:16px;
+    --shadow:0 20px 44px rgba(2,8,20,.55);
+  }
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-  a{color:var(--accent);text-decoration:none}
-  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
-  header{padding:22px 0;border-bottom:1px solid var(--line)}
-  header .wrap{display:flex;justify-content:space-between;align-items:center}
-  .logo{font-weight:800;font-size:22px;letter-spacing:.3px}.logo span{color:var(--accent)}
-  nav a{margin-left:18px;color:var(--muted);font-size:15px}nav a:hover{color:var(--text)}
-  section{padding:44px 0}
-  h1{font-size:34px;font-weight:800;margin-bottom:8px}
-  h2{font-size:22px;font-weight:800;margin-bottom:6px}
-  .sub{color:var(--muted);margin-bottom:26px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
-  .card p{color:var(--muted);font-size:15px}
-  .meta{color:var(--muted);font-size:13px;margin-bottom:10px}
-  footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:14px;text-align:center}
-  @media (max-width:560px){nav{display:none}}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:var(--cyan);text-decoration:none}
+  img{display:block}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  /* ---------- header ---------- */
+  .site-header{position:sticky;top:0;z-index:60;background:rgba(5,12,26,.72);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--line)}
+  .header-in{display:flex;align-items:center;gap:16px;padding-top:12px;padding-bottom:12px}
+  .brand{display:flex;align-items:center;gap:11px;color:var(--text);font-weight:800;font-size:20px;letter-spacing:.2px;white-space:nowrap}
+  .brand img{width:40px;height:40px;border-radius:11px;box-shadow:0 6px 18px rgba(45,212,191,.35)}
+  .brand em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .main-nav{margin-left:auto;display:flex;gap:24px}
+  .main-nav a{color:var(--muted);font-size:15px;font-weight:600;transition:color .2s}
+  .main-nav a:hover{color:var(--text)}
+  .btn{display:inline-block;background:var(--grad);color:#03202b;font-weight:800;padding:13px 26px;border-radius:12px;font-size:15px;box-shadow:0 10px 26px rgba(45,212,191,.28);transition:transform .25s ease,box-shadow .25s ease}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(45,212,191,.4)}
+  .btn-sm{padding:9px 18px;font-size:14px;margin-left:24px;white-space:nowrap}
+
+  /* ---------- page head ---------- */
+  .page-head{position:relative;overflow:hidden;padding:64px 0 8px}
+  .page-head::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(96,165,220,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(96,165,220,.06) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse 70% 90% at 30% 0%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 90% at 30% 0%,#000 20%,transparent 75%)}
+  .page-head .wrap{position:relative}
+  .kicker{font-size:12.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+  h1{font-size:clamp(30px,5vw,40px);font-weight:900;letter-spacing:-.3px;margin-bottom:8px}
+  .sub{color:var(--muted);max-width:620px;font-size:16.5px}
+
+  /* ---------- cards ---------- */
+  section{padding:40px 0 72px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:18px}
+  .gcard{position:relative;background:linear-gradient(var(--panel),var(--panel)) padding-box,linear-gradient(160deg,rgba(45,212,191,.55),rgba(56,189,248,.10) 45%,rgba(120,180,230,.16)) border-box;border:1px solid transparent;border-radius:var(--radius);padding:26px;transition:transform .3s ease,box-shadow .3s ease}
+  .gcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .gcard h2{font-size:20px;font-weight:800;line-height:1.35;margin-bottom:8px}
+  .gcard p{color:var(--muted);font-size:15px}
+  .meta{color:var(--teal);font-size:12.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-bottom:12px}
+  .read{margin-top:14px;font-weight:700;font-size:14.5px}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:38px 0 30px;background:var(--bg2)}
+  .foot-in{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+  .foot-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;color:var(--text)}
+  .foot-brand img{width:32px;height:32px;border-radius:9px}
+  .foot-brand em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .foot-tag{color:var(--muted);font-size:14px;margin-top:-8px}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+  .foot-links a{color:var(--muted);font-size:14.5px;font-weight:600}
+  .foot-links a:hover{color:var(--text)}
+  .foot-note{color:var(--muted2);font-size:13px}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+  @media (max-width:760px){
+    .main-nav{display:none}
+    .btn-sm{margin-left:auto}
+    .page-head{padding:48px 0 4px}
+  }
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <div class="logo">zynth<span>labs</span></div>
-    <nav>
+
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="brand" href="index.html"><img src="logo.png" alt="Zynth Labs logo" width="40" height="40"><span>Zynth <em>Labs</em></span></a>
+    <nav class="main-nav">
       <a href="index.html#services">Services</a>
+      <a href="index.html#work">Work</a>
       <a href="index.html#how">How it works</a>
       <a href="blog.html">Blog</a>
-      <a href="index.html#order">Order</a>
     </nav>
+    <a class="btn btn-sm" href="index.html#order">Order a task</a>
   </div>
 </header>
 
-<section>
+<div class="page-head">
   <div class="wrap">
+    <p class="kicker">Zynth Labs Blog</p>
     <h1>Blog</h1>
     <p class="sub">Short, practical notes for anyone who buys — or does — research, data extraction and writing work.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
     <div class="grid">
-      <div class="card">
+      <div class="gcard reveal">
         <div class="meta">Research · 17 November 2026</div>
         <h2>How to brief a research task so you get exactly what you need</h2>
         <p>Most disappointing research reports were disappointing briefs first. Five questions fix that.</p>
-        <p style="margin-top:14px"><a href="blog/brief-research-task.html">Read the article →</a></p>
+        <p class="read"><a href="blog/brief-research-task.html">Read the article →</a></p>
       </div>
-      <div class="card">
+      <div class="gcard reveal">
         <div class="meta">Data extraction · 17 November 2026</div>
         <h2>From messy pages to clean data: a checklist that actually works</h2>
         <p>Define the fields, agree the format, dedupe, and check a sample before the full run.</p>
-        <p style="margin-top:14px"><a href="blog/data-extraction-checklist.html">Read the article →</a></p>
+        <p class="read"><a href="blog/data-extraction-checklist.html">Read the article →</a></p>
       </div>
-      <div class="card">
+      <div class="gcard reveal">
         <div class="meta">Buying services · 17 November 2026</div>
         <h2>Fixed price vs hourly: which is cheaper for small tasks?</h2>
         <p>For a well-defined task, a flat price moves the risk to the seller. For open-ended work, it does not.</p>
-        <p style="margin-top:14px"><a href="blog/fixed-price-vs-hourly.html">Read the article →</a></p>
+        <p class="read"><a href="blog/fixed-price-vs-hourly.html">Read the article →</a></p>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">Zynth Labs — AI agent &amp; automation studio. Research, data extraction &amp; writing services. <a href="index.html#order">Order a task</a></div>
+  <div class="wrap foot-in">
+    <div class="foot-brand"><img src="logo.png" alt="Zynth Labs logo" width="32" height="32"><span>Zynth <em>Labs</em></span></div>
+    <p class="foot-tag">AI Agent &amp; Automation Studio · Web Research &amp; Data</p>
+    <nav class="foot-links">
+      <a href="https://contra.com/zynthlabs/about" target="_blank" rel="noopener">Contra</a>
+      <a href="https://synmerco.com" target="_blank" rel="noopener">Synmerco</a>
+      <a href="https://maungzy.market.near.ai" target="_blank" rel="noopener">NEAR Agent</a>
+      <a href="https://github.com/zynthlabsio" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/zynthlabs" target="_blank" rel="noopener">X</a>
+      <a href="index.html#order">Order a task</a>
+    </nav>
+    <p class="foot-note">© 2026 Zynth Labs · Fixed-price services from $15 per task · Escrow-protected payment</p>
+  </div>
 </footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){ e.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, {threshold: .12});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
 </body>
 </html>
