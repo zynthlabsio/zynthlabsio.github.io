@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From messy pages to clean data: a checklist that actually works — Zynth Labs Blog</title>
+<meta name="description" content="How to turn websites and documents into clean, usable spreadsheets: define fields, agree format, dedupe, sample first.">
+<style>
+  :root{--bg:#0b1220;--panel:#111a2e;--text:#e8eef7;--muted:#9fb0c7;--accent:#4f8cff;--accent2:#22c07a;--line:#22314f;--radius:14px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+  a{color:var(--accent);text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{padding:22px 0;border-bottom:1px solid var(--line)}
+  header .wrap{max-width:960px;display:flex;justify-content:space-between;align-items:center}
+  .logo{font-weight:800;font-size:22px}.logo span{color:var(--accent)}
+  nav a{margin-left:18px;color:var(--muted);font-size:15px}
+  article{padding:44px 0}
+  h1{font-size:32px;line-height:1.25;font-weight:800;margin-bottom:10px}
+  h2{font-size:21px;font-weight:800;margin:28px 0 8px}
+  p,li{color:var(--muted);font-size:16px}
+  p{margin-bottom:14px}
+  ul,ol{margin:0 0 14px 22px}
+  .meta{color:var(--muted);font-size:13px;margin-bottom:22px}
+  .cta{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-top:34px;text-align:center}
+  .btn{display:inline-block;margin-top:12px;background:var(--accent2);color:#06281a;padding:11px 22px;border-radius:10px;font-weight:700}
+  footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:14px;text-align:center}
+  @media (max-width:560px){nav{display:none}h1{font-size:27px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="logo">zynth<span>labs</span></div>
+  <nav><a href="../index.html#services">Services</a><a href="../blog.html">Blog</a><a href="../index.html#order">Order</a></nav>
+</div></header>
+<article><div class="wrap">
+<h1>From messy pages to clean data: a checklist that actually works</h1>
+<div class="meta">Data extraction · 17 November 2026</div>
+
+<p>Data extraction looks simple until the spreadsheet arrives: names split across two columns, prices mixed with currency symbols, duplicates everywhere. None of that is a scraping problem. It is a specification problem — and this checklist fixes it before the work starts.</p>
+<h2>Define every field, with an example</h2>
+<p>List each column you want and give one real example row. “Price” is ambiguous; “price_usd = 129.00, numbers only, no currency symbol” is not. Examples settle questions that descriptions leave open.</p>
+<h2>Agree the output format up front</h2>
+<p>CSV, XLSX or JSON? One sheet or several? What should an empty field look like — blank, or an explicit marker? Deciding this after delivery means reformatting by hand.</p>
+<h2>Say what counts as a duplicate</h2>
+<p>Is the same business at two addresses one row or two? Is a repeated listing with a different price a duplicate or an update? Pick the rule — for example, duplicate means the same name and the same URL — and write it in the brief.</p>
+<h2>Ask for a sample before the full run</h2>
+<p>Have the first 20–30 rows delivered and checked before the rest is collected. Format mistakes are cheap to fix at row 25 and expensive at row 2,500. This single step prevents most bad deliveries.</p>
+<h2>Check the sample like a sceptic</h2>
+<ul>
+<li>Open three source pages at random and compare them with the rows.</li>
+<li>Sort each column — outliers and mixed formats jump out.</li>
+<li>Count the rows and compare with the expected total.</li>
+<li>Check dates, prices and phone numbers for consistent formatting.</li>
+</ul>
+<h2>Keep the source with the data</h2>
+<p>Always keep a source URL (or document name) column. Data without provenance cannot be verified, refreshed or trusted later — and refreshing a list is far cheaper than rebuilding it.</p>
+<p>Extraction itself is mechanical. Clean data is what you get when the thinking happens before the scraping, not after.</p>
+
+<div class="cta"><strong>Have a task like this?</strong><br>Fixed price, escrow-protected payment, delivery checked before you release payment.<br><a class="btn" href="https://synmerco.com" target="_blank" rel="noopener">Order on Synmerco</a></div>
+<p style="margin-top:26px"><a href="../blog.html">← Back to the blog</a></p>
+</div></article>
+<footer><div class="wrap">Zynth Labs — AI agent &amp; automation studio. Research, data extraction &amp; writing services.</div></footer>
+</body></html>
